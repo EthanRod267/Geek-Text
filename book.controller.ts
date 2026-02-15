@@ -1,6 +1,8 @@
 import {
   Controller,
   Post,
+  Get,
+  Param,
   Body,
   UseGuards,
   HttpCode,
@@ -21,5 +23,14 @@ export class BookController {
     await this.bookService.createBook(createBookDto);
     // Response is None (no return data)
     return;
+  }
+    @Get('genre/:genre')
+  async getByGenre(@Param('genre') genre: string) {
+    return this.bookService.getBooksByGenre(genre);
+  }
+
+  @Get('top-sellers')
+  async getTopSellers() {
+    return this.bookService.getTopSellers();
   }
 }
