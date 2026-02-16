@@ -17,6 +17,7 @@ model User {
   email     String   @unique
   name      String?
   cart      Cart?
+  ratings   Rating[]
 }
 
 model Book {
@@ -33,6 +34,7 @@ model Book {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   cartItems CartItem[]
+  ratings   Rating[]
 }
 
 model Cart {
@@ -52,4 +54,16 @@ model CartItem {
   book      Book    @relation(fields: [bookId], references: [id])
 
   @@unique([cartId, bookId])
+}
+model Rating {
+  id        Int      @id @default(autoincrement())
+  value     Int
+  userId    Int
+  bookId    Int
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+  book      Book     @relation(fields: [bookId], references: [id])
+
+  @@unique([userId, bookId])
 }
