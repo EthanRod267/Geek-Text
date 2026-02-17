@@ -13,11 +13,15 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
+  id        Int           @id @default(autoincrement())
+  email     String        @unique
+  username  String        @unique  
+  password  String                 
   name      String?
+  address   String?                
   cart      Cart?
-  ratings   Rating[]
+  creditCards CreditCard[]
+  ratings     Rating[]      
 }
 
 model Book {
@@ -66,4 +70,14 @@ model Rating {
   book      Book     @relation(fields: [bookId], references: [id])
 
   @@unique([userId, bookId])
+}
+
+model CreditCard {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  cardNumber   String
+  cardHolder   String
+  expiryDate   String
+  cvv          String
+  user         User     @relation(fields: [userId], references: [id])
 }
