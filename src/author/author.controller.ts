@@ -9,8 +9,10 @@ import {
 
 from '@nestjs/common';
 import { AuthorService } from './author.service';
-import { CreateAuthorDto } from './dto/createAuthor.dto';
-import { AdminGuard } from '../auth/guards/admin.guard'; // Implement this guard
+import { AdminGuard } from 'admin.guard';
+import { CreateAuthorDto } from './dto/create-author.dto';
+
+
 
 @Controller('authors')
 export class AuthorController {

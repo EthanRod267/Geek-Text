@@ -8,7 +8,7 @@ import {
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
-import { BookService } from './book.service';
+import { BookService } from '../../book.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { AdminGuard } from './auth/guards/admin.guard'; // You'll need to implement this
 

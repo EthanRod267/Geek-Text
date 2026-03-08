@@ -1,7 +1,8 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { CreateAuthorDto } from './dto/createAuthor.dto';
-import { AuthorResponseDto } from './dto/author-response.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateAuthorDto } from 'src/author/dto/createAuthor.dto';
+import { AuthorResponseDto } from 'src/author/dto/authorResponse.dto';
+
 
 @Injectable()
 export class AuthorService {
