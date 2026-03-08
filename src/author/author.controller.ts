@@ -5,9 +5,7 @@ import {
   UseGuards,
   HttpCode,
   HttpStatus,
-} 
-
-from '@nestjs/common';
+} from '@nestjs/common';
 import { AuthorService } from './author.service';
 import { AdminGuard } from 'admin.guard';
 import { CreateAuthorDto } from './dto/create-author.dto';
