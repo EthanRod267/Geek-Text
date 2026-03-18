@@ -8,9 +8,10 @@ import {
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
-import { BookService } from '../../book.service';
-import { CreateBookDto } from './dto/create-book.dto';
-import { AdminGuard } from './auth/guards/admin.guard'; // You'll need to implement this
+import { BookService } from './book.service';
+import { AdminGuard } from '../../admin.guard';
+import { CreateBookDto } from '../../dto/createBook.dto';
+
 
 @Controller('books')
 export class BookController {
@@ -24,6 +25,16 @@ export class BookController {
     // Response is None (no return data)
     return;
   }
+    /**
+     * GET /books/:isbn
+     * Retrieve book details by ISBN
+     * Parameters: isbn (string)
+     * Response: Book object JSON
+     */
+    @Get(':isbn')
+    async getBookByIsbn(@Param('isbn') isbn: string) {
+      return this.bookService.getBookByIsbn(isbn);
+    }
     @Get('genre/:genre')
   async getByGenre(@Param('genre') genre: string) {
     return this.bookService.getBooksByGenre(genre);

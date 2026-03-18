@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { CreateBookDto } from './dto/create-book.dto.';
-import { PrismaService } from './prisma/prisma.service'; 
+import { CreateBookDto } from 'dto/createBook.dto';
+import { PrismaService } from '../prisma/prisma.service';
+
 
 @Injectable()
 export class BookService {
@@ -27,6 +28,14 @@ export class BookService {
       throw new Error(`Failed to create book: ${error.message}`);
     }
   }
+    /**
+     * Retrieve a book by ISBN
+     */
+    async getBookByIsbn(isbn: string) {
+      return this.prisma.book.findUnique({
+        where: { isbn },
+      });
+    }
     async getBooksByGenre(genre: string) {
     return this.prisma.book.findMany({
       where: { genre },
