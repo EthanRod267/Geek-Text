@@ -44,4 +44,8 @@ export class BookController {
   async getTopSellers() {
     return this.bookService.getTopSellers();
   }
+    @Get('publisher/:publisher')
+  async getByPublisher(@Param('publisher') publisher: string) {
+    return this.bookService.getBooksByPublisher(publisher);
+  }
 }

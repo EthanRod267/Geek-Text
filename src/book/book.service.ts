@@ -48,4 +48,11 @@ export class BookService {
       take: 10,
     });
   }
+    async getBooksByPublisher(publisher: string) {
+    return this.prisma.book.findMany({
+      where: {
+        publisher: publisher,
+      },
+    });
+  }
 }
