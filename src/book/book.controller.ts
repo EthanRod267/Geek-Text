@@ -2,6 +2,7 @@ import {
   Controller,
   Post,
   Get,
+  Query,
   Param,
   Body,
   UseGuards,
@@ -48,4 +49,11 @@ export class BookController {
   async getByPublisher(@Param('publisher') publisher: string) {
     return this.bookService.getBooksByPublisher(publisher);
   }
+  @Get('search')
+async searchBooks(
+  @Query('publisher') publisher?: string,
+  @Query('genre') genre?: string,
+) {
+  return this.bookService.searchBooks(publisher, genre);
+}
 }
