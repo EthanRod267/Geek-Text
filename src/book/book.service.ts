@@ -55,4 +55,12 @@ export class BookService {
       },
     });
   }
+    async searchBooks(publisher?: string, genre?: string) {
+    return this.prisma.book.findMany({
+      where: {
+        ...(publisher ? { publisher } : {}),
+        ...(genre ? { genre } : {}),
+      },
+    });
+  }
 }
