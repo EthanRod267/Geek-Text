@@ -5,9 +5,16 @@ import { PrismaModule } from './prisma/prisma.module';
 import { CartModule } from './cart/cart.module';
 import { BookModule } from './book/book.module';
 import { AuthorModule } from './author/author.module';
+import { RatingModule } from './rating.module';
 
 @Module({
-  imports: [PrismaModule, CartModule, BookModule, AuthorModule],
+  imports: [
+    PrismaModule,
+    CartModule,
+    BookModule,
+    AuthorModule,
+    RatingModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
