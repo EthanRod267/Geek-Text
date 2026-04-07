@@ -6,6 +6,7 @@ import { CartModule } from './cart/cart.module';
 import { BookModule } from './book/book.module';
 import { AuthorModule } from './author/author.module';
 import { RatingModule } from './rating.module';
+import { WishlistsModule } from './wishlists/wishlists.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { RatingModule } from './rating.module';
     BookModule,
     AuthorModule,
     RatingModule,
+    WishlistsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

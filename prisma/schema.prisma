@@ -20,8 +20,12 @@ model User {
   name      String?
   address   String?                
   cart      Cart?
+<<<<<<< Updated upstream
   creditCards CreditCard[]
   ratings     Rating[]      
+=======
+  wishlists Wishlist[]
+>>>>>>> Stashed changes
 }
 
 model Book {
@@ -38,7 +42,11 @@ model Book {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   cartItems CartItem[]
+<<<<<<< Updated upstream
   ratings   Rating[]
+=======
+  wishlistItems WishlistItem[]
+>>>>>>> Stashed changes
 }
 
 model Cart {
@@ -59,6 +67,7 @@ model CartItem {
 
   @@unique([cartId, bookId])
 }
+<<<<<<< Updated upstream
 model Rating {
   id        Int      @id @default(autoincrement())
   value     Int
@@ -80,4 +89,30 @@ model CreditCard {
   expiryDate   String
   cvv          String
   user         User     @relation(fields: [userId], references: [id])
+=======
+model Wishlist {
+  id        Int            @id @default(autoincrement())
+  name      String
+  isPrimary Boolean        @default(false)
+  userId    Int
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     WishlistItem[]
+
+  @@unique([userId, name]) // wishlist names unique per user
+  @@index([userId])
+}
+
+model WishlistItem {
+  wishlistId Int
+  bookId     Int
+  wishlist   Wishlist @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
+  book       Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+
+  @@id([wishlistId, bookId]) // prevents duplicates
+  @@index([bookId])
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+>>>>>>> Stashed changes
 }
